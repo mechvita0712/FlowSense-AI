@@ -1,17 +1,17 @@
-# 🎓 Smart Campus Crowd Detection & Gate Redirection System
+#  Smart Campus Crowd Detection & Gate Redirection System
 
 Complete AI-powered crowd detection system with automated gate redirection logic using YOLOv8, ByteTrack, and real-time WebSocket notifications.
 
-## 🎯 Features Implemented
+##  Features Implemented
 
-### ✅ Detection & Tracking (gate_monitor/)
+###  Detection & Tracking (gate_monitor/)
 - **YOLOv8** person detection with GPU acceleration
 - **ByteTrack** multi-object tracking (no duplicate counting)
 - Virtual line counting with IN/OUT direction detection
 - Per-gate SQLite event logging
 - Automated API posting to backend every 30s
 
-### ✅ Backend API (smart-campus-backend/)
+###  Backend API (smart-campus-backend/)
 - **Flask + Flask-SocketIO** for real-time communication
 - **Dynamic per-gate capacity management** with admin API
 - **WebSocket push notifications** for instant alerts
@@ -20,7 +20,7 @@ Complete AI-powered crowd detection system with automated gate redirection logic
 - **13+ REST API endpoints** for traffic, gates, shuttles, routes
 - **Anti-Gravity AI** prediction engine with anomaly detection
 
-### ✅ Frontend Dashboard (smart-campus-frontend/)
+###  Frontend Dashboard (smart-campus-frontend/)
 - **Real-time WebSocket** integration - no polling needed
 - **Redirection alert modal** - automatic popup when gate is full
 - **Admin settings panel** - manage gate capacities in real-time
@@ -28,7 +28,7 @@ Complete AI-powered crowd detection system with automated gate redirection logic
 - **Live heatmap** with Canvas rendering
 - **Responsive design** with collapsible sidebar
 
-### ✅ Key APIs
+###  Key APIs
 
 #### Crowd Status
 ```http
@@ -78,7 +78,7 @@ Body: {
 }
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Python 3.8+ with Anaconda
@@ -139,7 +139,7 @@ The frontend will automatically:
 - Display real-time crowd updates
 - Show redirection alerts when gates are full
 
-## 📊 System Architecture
+##  System Architecture
 
 ```
 ┌─────────────────┐         ┌──────────────────┐         ┌─────────────────┐
@@ -153,7 +153,7 @@ The frontend will automatically:
 └─────────────────┘         └──────────────────┘         └─────────────────┘
 ```
 
-## 🎮 Usage Examples
+##  Usage Examples
 
 ### Scenario 1: Single Gate Monitoring
 1. Start backend
@@ -177,7 +177,7 @@ The frontend will automatically:
 3. Adjust gate capacities
 4. See density calculations update immediately
 
-## 🔧 Configuration Options
+##  Configuration Options
 
 ### Gate Capacity Settings
 - **Per-Gate Mode**: Each gate has individual capacity
@@ -194,7 +194,7 @@ The frontend will automatically:
 - `DEFAULT_WARNING_THRESHOLD`: 0.7 (70% = warning)
 - `DEFAULT_CRITICAL_THRESHOLD`: 0.9 (90% = critical)
 
-## 📡 WebSocket Events
+##  WebSocket Events
 
 ### Client → Server
 None currently (future: manual overrides)
@@ -229,7 +229,7 @@ None currently (future: manual overrides)
   }
   ```
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Backend won't start
 - Check conda environment is activated
@@ -251,7 +251,7 @@ None currently (future: manual overrides)
 - Verify Socket.IO CDN loaded in browser network tab
 - Check browser console for connection errors
 
-## 📦 Project Structure
+##  Project Structure
 
 ```
 c2/
@@ -293,14 +293,14 @@ c2/
 
 ```
 
-## 🔐 Security Notes
+##  Security Notes
 
 - API key authentication protects POST /api/traffic/add
 - JWT tokens required for admin endpoints
 - In production, use HTTPS and strong secrets
 - Change all default keys in .env files
 
-## 🚀 Production Deployment
+##  Production Deployment
 
 For production use:
 1. Replace SQLite with PostgreSQL
@@ -311,21 +311,21 @@ For production use:
 6. Add rate limiting
 7. Deploy with Docker/Kubernetes
 
-## 📝 API Documentation
+##  API Documentation
 
 Full API documentation available at:
 - Backend root: http://localhost:5000/api
 - Health check: http://localhost:5000/api/health
 
-## 🎉 Success! Your System is Ready
+##  Success! Your System is Ready
 
 You now have a fully functional crowd detection system with:
-- ✅ Real-time person tracking
-- ✅ Duplicate-free counting
-- ✅ Automated gate redirection
-- ✅ WebSocket live updates
-- ✅ Admin capacity management
-- ✅ Mobile push notification support
+- Real-time person tracking
+- Duplicate-free counting
+- Automated gate redirection
+- WebSocket live updates
+- Admin capacity management
+- Mobile push notification support
 
 **Next Steps:**
 1. Test with live camera feed
