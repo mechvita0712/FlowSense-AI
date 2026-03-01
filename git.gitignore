@@ -1,0 +1,28 @@
+# Environment
+.env
+*.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual env
+venv/
+.venv/
+
+# Model weights
+*.pt
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Videos
+*.mp4
+*.avi
+# Instance folder
+instance/
+
+# OS
+.DS_Store

@@ -1,0 +1,9 @@
+{
+    "source_directories": [
+        "."
+    ],
+    "search_path": [
+        "C:/Users/Admin/anaconda3/Lib/site-packages"
+    ],
+    "python_version": "3.13"
+}

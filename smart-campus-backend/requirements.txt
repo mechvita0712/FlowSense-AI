@@ -1,0 +1,23 @@
+# ── Core ───────────────────────────────────────────────────────────────────────
+flask>=3.1.0
+flask-cors>=4.0.0
+flask-sqlalchemy>=3.1.0
+flask-jwt-extended>=4.7.0
+flask-socketio>=5.3.0
+python-socketio>=5.11.0
+python-dotenv>=1.0.0
+werkzeug>=3.1.0
+
+# ── Database drivers (uncomment whichever you need) ────────────────────────────
+# psycopg2-binary>=2.9.0      # PostgreSQL
+# pymysql>=1.1.0              # MySQL / MariaDB
+# cx_Oracle>=8.3.0            # Oracle
+
+# ── AI / ML (optional — only needed if USE_LLM=true or for real ML models) ────
+# openai>=1.30.0              # OpenAI GPT integration
+# scikit-learn>=1.4.0         # Train / load real sklearn models
+# numpy>=1.26.0               # Numerical operations
+
+# ── Production server ──────────────────────────────────────────────────────────
+# gunicorn>=22.0.0            # Production WSGI (Linux/Mac)
+# waitress>=3.0.0             # Production WSGI (Windows)

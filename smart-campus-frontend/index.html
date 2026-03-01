@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartCampus AI | Mobility Intelligence Platform</title>
+    <meta name="description"
+        content="AI-driven Smart Campus Mobility System providing real-time congestion insights, predictive analytics, and intelligent route recommendations." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <!-- ===== SIDEBAR NAV ===== -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3" />
+                    <path
+                        d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
+                </svg>
+            </div>
+            <div class="brand-text">
+                <span class="brand-name">SmartCampus<span class="brand-ai">AI</span></span>
+                <span class="brand-sub">Mobility Intelligence v2.1</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Sidebar navigation">
+            <span class="nav-section-label">OVERVIEW</span>
+            <a href="#" class="nav-item active" data-view="dashboard" id="nav-dashboard" onclick="switchView('dashboard')" tabindex="0" aria-current="page">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                </svg>
+                Dashboard
+            </a>
+            <a href="#" class="nav-item" data-view="map" id="nav-map" onclick="switchView('map')" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="3,6 9,3 15,6 21,3 21,18 15,21 9,18 3,21" />
+                    <line x1="9" y1="3" x2="9" y2="18" />
+                    <line x1="15" y1="6" x2="15" y2="21" />
+                </svg>
+                Live Campus Map
+            </a>
+
+            <span class="nav-section-label">INTELLIGENCE</span>
+            <a href="#" class="nav-item" data-view="gates" id="nav-gates" onclick="switchView('gates')" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    <polyline points="9,22 9,12 15,12 15,22" />
+                </svg>
+                Gate Congestion
+            </a>
+            <a href="#" class="nav-item" data-view="shuttle" id="nav-shuttle" onclick="switchView('shuttle')" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1" y="3" width="15" height="13" rx="2" />
+                    <path d="M16 8h4l3 3v5h-7V8z" />
+                    <circle cx="5.5" cy="18.5" r="2.5" />
+                    <circle cx="18.5" cy="18.5" r="2.5" />
+                </svg>
+                Shuttle Forecast
+            </a>
+            <a href="#" class="nav-item" data-view="routes" id="nav-routes" onclick="switchView('routes')" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
+                </svg>
+                Route Advisor
+            </a>
+
+            <span class="nav-section-label">MANAGEMENT</span>
+            <a href="#" class="nav-item" data-view="events" id="nav-events" onclick="switchView('events')" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Events & Schedule
+            </a>
+            <a href="#" class="nav-item" data-view="alerts" id="nav-alerts" onclick="switchView('alerts')" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                    <path d="M13.73 21a2 2 0 01-3.46 0" />
+                </svg>
+                Smart Alerts
+                <span class="nav-badge" id="alert-badge">3</span>
+            </a>
+            <a href="#" class="nav-item" data-view="analytics" id="nav-analytics" onclick="switchView('analytics')" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10" />
+                    <line x1="12" y1="20" x2="12" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="14" />
+                </svg>
+                Analytics
+            </a>
+            <a href="#" class="nav-item" data-view="admin" id="nav-admin" onclick="switchView('admin')" tabindex="0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M12 1v6m0 6v6" />
+                    <path d="M17 7l-10 10M7 7l10 10" style="opacity:0.5" />
+                </svg>
+                Admin Settings
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="privacy-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                Privacy-First Architecture
+            </div>
+            <div class="data-status">
+                <span class="pulse-dot"></span>
+                Anonymized &amp; Aggregated Data
+            </div>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+        <!-- TOP HEADER BAR -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle sidebar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+                <div class="page-title-area">
+                    <h1 class="page-title" id="page-title">Command Center</h1>
+                    <p class="page-subtitle" id="page-subtitle">Real-time campus mobility intelligence</p>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <div class="live-clock" id="live-clock">15:59:55</div>
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    LIVE
+                </div>
+                <div class="weather-widget">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    </svg>
+                    28°C
+                </div>
+                <div class="campus-status-pill" id="campus-status-pill">
+                    <span class="status-indicator moderate"></span>
+                    Moderate Traffic
+                </div>
+            </div>
+        </header>
+
+        <!-- ALERT BANNER -->
+        <div class="alert-banner" id="alert-banner" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            <span id="alert-banner-text">Alert message here</span>
+            <button id="alert-banner-close"
+                onclick="document.getElementById('alert-banner').style.display='none'">✕</button>
+        </div>
+
+        <!-- ==================== VIEWS ==================== -->
+
+        <!-- ===== DASHBOARD VIEW ===== -->
+        <div class="view active" id="view-dashboard">
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+                <div class="kpi-card" id="kpi-total-people">
+                    <div class="kpi-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                            <path d="M16 3.13a4 4 0 010 7.75" />
+                        </svg></div>
+                    <div class="kpi-content">
+                        <div class="kpi-value" id="kpi-people-val">2,847</div>
+                        <div class="kpi-label">Active on Campus</div>
+                        <div class="kpi-change positive" id="kpi-people-change">+12% vs avg</div>
+                    </div>
+                    <div class="kpi-sparkline" id="sparkline-people"></div>
+                </div>
+                <div class="kpi-card" id="kpi-congestion">
+                    <div class="kpi-icon orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                        </svg></div>
+                    <div class="kpi-content">
+                        <div class="kpi-value" id="kpi-congestion-val">62%</div>
+                        <div class="kpi-label">Avg Congestion Index</div>
+                        <div class="kpi-change warning" id="kpi-congestion-change">⚠ Above threshold</div>
+                    </div>
+                    <div class="kpi-sparkline" id="sparkline-congestion"></div>
+                </div>
+                <div class="kpi-card" id="kpi-shuttle">
+                    <div class="kpi-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="1" y="3" width="15" height="13" rx="2" />
+                            <path d="M16 8h4l3 3v5h-7V8z" />
+                            <circle cx="5.5" cy="18.5" r="2.5" />
+                            <circle cx="18.5" cy="18.5" r="2.5" />
+                        </svg></div>
+                    <div class="kpi-content">
+                        <div class="kpi-value" id="kpi-shuttle-val">8 / 12</div>
+                        <div class="kpi-label">Shuttles Active</div>
+                        <div class="kpi-change positive" id="kpi-shuttle-change">Next: Gate C in 4 min</div>
+                    </div>
+                    <div class="kpi-sparkline" id="sparkline-shuttle"></div>
+                </div>
+                <div class="kpi-card" id="kpi-alerts">
+                    <div class="kpi-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                            <path d="M13.73 21a2 2 0 01-3.46 0" />
+                        </svg></div>
+                    <div class="kpi-content">
+                        <div class="kpi-value" id="kpi-alerts-val">3</div>
+                        <div class="kpi-label">Active Alerts</div>
+                        <div class="kpi-change negative" id="kpi-alerts-change">2 critical, 1 warning</div>
+                    </div>
+                    <div class="kpi-sparkline" id="sparkline-alerts"></div>
+                </div>
+            </div>
+
+            <!-- Main Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Campus Map Mini -->
+                <div class="card map-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="3,6 9,3 15,6 21,3 21,18 15,21 9,18 3,21" />
+                            </svg>
+                            Live Campus Heatmap
+                        </div>
+                        <div class="card-actions">
+                            <span class="tag green">LIVE</span>
+                            <button class="btn-ghost" onclick="switchView('map')">Full View →</button>
+                        </div>
+                    </div>
+                    <div class="campus-map-container" id="campus-map-mini">
+                        <canvas id="heatmap-canvas" width="700" height="350"></canvas>
+                        <div class="map-legend">
+                            <span class="legend-item"><span class="dot low"></span>Low</span>
+                            <span class="legend-item"><span class="dot moderate"></span>Moderate</span>
+                            <span class="legend-item"><span class="dot high"></span>High</span>
+                            <span class="legend-item"><span class="dot critical"></span>Critical</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Congestion Prediction Chart -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" />
+                            </svg>
+                            Next-Hour Congestion Forecast
+                        </div>
+                        <div class="card-actions">
+                            <span class="tag purple">ML MODEL</span>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="forecast-chart" width="400" height="220"></canvas>
+                    </div>
+                    <div class="forecast-summary" id="forecast-summary">
+                        <div class="forecast-item">
+                            <span class="f-label">Peak Expected</span>
+                            <span class="f-value" id="peak-time">17:30</span>
+                        </div>
+                        <div class="forecast-item">
+                            <span class="f-label">Predicted Max</span>
+                            <span class="f-value warning" id="peak-val">87%</span>
+                        </div>
+                        <div class="forecast-item">
+                            <span class="f-label">AI Confidence</span>
+                            <span class="f-value positive" id="ai-confidence">94%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gate Status -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                            </svg>
+                            Gate Congestion Status
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-ghost" onclick="switchView('gates')">Details →</button>
+                        </div>
+                    </div>
+                    <div class="gate-list" id="gate-list-mini">
+                        <!-- populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Active Alerts -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                            </svg>
+                            Smart Alerts
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-ghost" onclick="switchView('alerts')">All Alerts →</button>
+                        </div>
+                    </div>
+                    <div class="alerts-list" id="alerts-list-mini">
+                        <!-- populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Shuttle Status -->
+                <div class="card shuttle-mini-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="1" y="3" width="15" height="13" rx="2" />
+                                <path d="M16 8h4l3 3v5h-7V8z" />
+                                <circle cx="5.5" cy="18.5" r="2.5" />
+                                <circle cx="18.5" cy="18.5" r="2.5" />
+                            </svg>
+                            Shuttle Live Status
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-ghost" onclick="switchView('shuttle')">Forecast →</button>
+                        </div>
+                    </div>
+                    <div class="shuttle-list" id="shuttle-mini-list">
+                        <!-- populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Route Recommendations -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12,6 12,12 16,14" />
+                            </svg>
+                            AI Route Nudges
+                        </div>
+                        <div class="card-actions">
+                            <span class="tag blue">REAL-TIME</span>
+                        </div>
+                    </div>
+                    <div class="route-nudges" id="route-nudges-mini">
+                        <!-- populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== LIVE MAP VIEW ===== -->
+        <div class="view" id="view-map">
+            <div class="card full-map-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="3,6 9,3 15,6 21,3 21,18 15,21 9,18 3,21" />
+                        </svg>
+                        Live Campus Mobility Map
+                    </div>
+                    <div class="card-actions">
+                        <label class="toggle-label">
+                            <input type="checkbox" id="show-routes-toggle" checked
+                                onchange="toggleRoutes(this.checked)"> Show Routes
+                        </label>
+                        <label class="toggle-label">
+                            <input type="checkbox" id="show-shuttles-toggle" checked
+                                onchange="toggleShuttles(this.checked)"> Show Shuttles
+                        </label>
+                        <span class="tag green">LIVE</span>
+                    </div>
+                </div>
+                <div class="full-map-body">
+                    <canvas id="full-map-canvas" width="1000" height="560"></canvas>
+                    <div class="map-sidebar-info">
+                        <h3>Zone Details</h3>
+                        <div id="zone-detail-panel">
+                            <p class="hint-text">Hover over a zone to see details</p>
+                        </div>
+                        <h3 style="margin-top:20px">Map Legend</h3>
+                        <div class="map-legend vertical">
+                            <span class="legend-item"><span class="dot low"></span>0–30% Density</span>
+                            <span class="legend-item"><span class="dot moderate"></span>30–60% Density</span>
+                            <span class="legend-item"><span class="dot high"></span>60–80% Density</span>
+                            <span class="legend-item"><span class="dot critical"></span>80%+ Critical</span>
+                            <span class="legend-item"><span
+                                    style="display:inline-block;width:12px;height:12px;border-radius:2px;background:#00d4ff;margin-right:6px;vertical-align:middle;"></span>Shuttle
+                                Route</span>
+                            <span class="legend-item"><span
+                                    style="display:inline-block;width:12px;height:12px;border-radius:2px;background:#7c3aed;margin-right:6px;vertical-align:middle;"></span>AI
+                                Alt Route</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== GATE CONGESTION VIEW ===== -->
+        <div class="view" id="view-gates">
+            <div class="gates-grid">
+                <!-- Gate Cards populated by JS -->
+                <div id="gate-cards-container" class="gate-cards-container"></div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Gate Entry Volume — Last 12 Hours</div>
+                        <span class="tag purple">ML ANALYSIS</span>
+                    </div>
+                    <canvas id="gate-history-chart" width="500" height="260"></canvas>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Predicted Congestion — Next 2 Hours</div>
+                        <span class="tag orange">FORECAST</span>
+                    </div>
+                    <canvas id="gate-prediction-chart" width="500" height="260"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SHUTTLE FORECAST VIEW ===== -->
+        <div class="view" id="view-shuttle">
+            <div class="shuttle-view-grid">
+                <div class="card span-2">
+                    <div class="card-header">
+                        <div class="card-title">Shuttle Demand Forecast — Next 6 Hours</div>
+                        <span class="tag purple">ML PREDICTION</span>
+                    </div>
+                    <canvas id="shuttle-forecast-chart" width="900" height="280"></canvas>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Fleet Status</div>
+                    </div>
+                    <div id="shuttle-fleet-status"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Route Utilization</div>
+                    </div>
+                    <canvas id="shuttle-route-chart" width="380" height="260"></canvas>
+                </div>
+
+                <div class="card span-2">
+                    <div class="card-header">
+                        <div class="card-title">AI Dispatch Recommendations</div>
+                        <span class="tag green">OPTIMIZED</span>
+                    </div>
+                    <div id="shuttle-dispatch-recs"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ROUTE ADVISOR VIEW ===== -->
+        <div class="view" id="view-routes">
+            <div class="routes-view-grid">
+                <div class="card span-2">
+                    <div class="card-header">
+                        <div class="card-title">Smart Route Recommendations</div>
+                        <span class="tag blue">AI POWERED</span>
+                    </div>
+                    <div id="route-recommendations-full"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Route Efficiency Score</div>
+                    </div>
+                    <canvas id="route-efficiency-chart" width="360" height="260"></canvas>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Congestion Avoided — Today</div>
+                    </div>
+                    <div class="stat-display-grid" id="route-stats-display"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== EVENTS VIEW ===== -->
+        <div class="view" id="view-events">
+            <div class="events-grid">
+                <div class="card span-2">
+                    <div class="card-header">
+                        <div class="card-title">Today's Event Schedule & Impact Forecast</div>
+                        <span class="tag orange">IMPACT ANALYSIS</span>
+                    </div>
+                    <div id="events-timeline"></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Upcoming Events Impact</div>
+                    </div>
+                    <div id="events-impact-list"></div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Historical Event Congestion</div>
+                    </div>
+                    <canvas id="event-history-chart" width="380" height="260"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ALERTS VIEW ===== -->
+        <div class="view" id="view-alerts">
+            <div class="alerts-full-grid">
+                <div class="card span-full">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                <path d="M13.73 21a2 2 0 01-3.46 0" />
+                            </svg>
+                            Smart Alert Center
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-secondary" id="clear-all-alerts" onclick="clearAllAlerts()">Clear
+                                All</button>
+                        </div>
+                    </div>
+                    <div class="alerts-filter-bar">
+                        <button class="filter-btn active" onclick="filterAlerts('all', this)">All</button>
+                        <button class="filter-btn" onclick="filterAlerts('critical', this)">Critical</button>
+                        <button class="filter-btn" onclick="filterAlerts('warning', this)">Warning</button>
+                        <button class="filter-btn" onclick="filterAlerts('info', this)">Info</button>
+                    </div>
+                    <div id="alerts-full-list"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Alert Threshold Settings</div>
+                    </div>
+                    <div class="threshold-settings" id="threshold-settings"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Alert History — Today</div>
+                    </div>
+                    <canvas id="alert-history-chart" width="380" height="260"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ANALYTICS VIEW ===== -->
+        <div class="view" id="view-analytics">
+            <div class="analytics-grid">
+                <div class="card span-2">
+                    <div class="card-header">
+                        <div class="card-title">Weekly Mobility Patterns</div>
+                        <div class="card-actions">
+                            <select class="select-sm" id="analytics-range" onchange="updateAnalyticsChart(this.value)">
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                        </div>
+                    </div>
+                    <canvas id="analytics-weekly-chart" width="900" height="280"></canvas>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Peak Hours Distribution</div>
+                    </div>
+                    <canvas id="analytics-peak-chart" width="380" height="260"></canvas>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Congestion Reduction Impact</div>
+                    </div>
+                    <div class="impact-stat-grid" id="impact-stats"></div>
+                </div>
+
+                <div class="card span-2">
+                    <div class="card-header">
+                        <div class="card-title">AI Model Performance Metrics</div>
+                        <span class="tag purple">ML MONITORING</span>
+                    </div>
+                    <div class="ml-metrics-grid" id="ml-metrics"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADMIN VIEW -->
+        <div class="view" id="view-admin">
+            <div class="card-grid">
+                <div class="card span-3">
+                    <div class="card-header">
+                        <div class="card-title">Gate Capacity Management</div>
+                        <span class="tag purple">ADMIN</span>
+                    </div>
+                    <div id="admin-capacity-controls"></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Global Settings</div>
+                    </div>
+                    <div id="admin-global-settings"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- REDIRECTION ALERT MODAL -->
+    <div id="redirect-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🚨 Gate Redirection Alert</h2>
+                <button class="modal-close" onclick="closeRedirectModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="redirect-modal-body">
+                <p class="redirect-message"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="closeRedirectModal()">Understood</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
